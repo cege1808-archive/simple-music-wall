@@ -3,31 +3,31 @@ get '/' do
   erb :index
 end
 
-get '/messages/' do
-  @messages = Message.all
-  erb :'messages/index'
+get '/tracks/' do
+  @tracks = Track.all
+  erb :'tracks/index'
 end
 
-get '/messages/new' do
-  @message = Message.new
-  erb :'messages/new'
+get '/tracks/new' do
+  @tracks = Track.new
+  erb :'tracks/new'
 end
 
-get '/messages/:id' do
-  @message = Message.find params[:id]
-  erb :'messages/show'
+get '/tracks/:id' do
+  @tracks = Track.find params[:id]
+  erb :'tracks/show'
 end
 
-post '/messages' do 
-  binding.pry
-  @message = Message.new(
+post '/tracks' do 
+  # binding.pry
+  @tracks = Track.new(
     title: params[:title],
-    content: params[:content],
-    author: params[:author]
+    artist: params[:artist],
+    url: params[:url]
   )
-  if @message.save
-    redirect '/messages'
+  if @tracks.save
+    redirect '/tracks/'
   else
-    erb :'/messages/new'
+    erb :'/tracks/new'
   end
 end

@@ -1,0 +1,34 @@
+<h1>Add to Collection</h1>
+<hr/>
+
+<% if @tracks.errors.any? %>
+  <div>
+    <strong>Some issues with you tracks, please fix them: </strong>
+    <ul>
+      <% @tracks.errors.full_tracks.each do |tracks| %>
+        <li> <%= tracks %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/tracks">
+  <div> 
+    <label>Title:</label>
+    <input type="text" name="title" value="<%= @tracks.title %>">
+  </div>
+
+  <div> 
+    <label>Artist:</label>
+    <input type="text" name="artist" value="<%= @tracks.artist %>">
+  </div>
+
+  <div> 
+    <label>Url:</label>
+    <input type="text" name="url" value="<%= @tracks.url %>">
+  </div>
+
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
