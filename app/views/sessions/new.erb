@@ -1,6 +1,17 @@
 <h1>Login</h1>
 <hr/>
 
+<% if @current_user.errors.any? %>
+  <div>
+    <strong>Some issues with you current_user, please fix them: </strong>
+    <ul>
+      <% @current_user.errors.full_tracks.each do |current_user_error| %>
+        <li> <%= current_user_error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form method="POST" action="/sessions">
   <div> 
     <label>Username:</label>

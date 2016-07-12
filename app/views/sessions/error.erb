@@ -1,7 +1,8 @@
 <h1>Log In Error</h1>
 
-<%= if @user1 %>
+<% if @user1 %>
   <p> Wrong password </p>
-<%= else %>
+<% else %>
   <p> No such username, sign up?</p>
-<%= end %>
+  <!-- TODO ahref links to sign up or log in again -->
+<% end %>

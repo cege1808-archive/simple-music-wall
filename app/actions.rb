@@ -17,11 +17,25 @@ end
 #   end
 # end
 
-get '/user/new' do
-  @current_user = User.new
-  erb :'user/new'
+get '/users/new' do
+  @new_user = User.new
+  erb :'/users/new'
 end
 
+post '/users' do
+  @new_user = User.new(
+    username: params[:username],
+    email: params[:email],
+    password: params[:password]
+  )
+  if params[:password] == params[:confirm_password]
+    if @new_user.save
+      redirect '/tracks'
+    end
+  else
+    erb :'/users/new'
+  end
+end
 
 
 get '/sessions/new' do
@@ -37,8 +51,12 @@ post '/sessions' do
       redirect '/tracks'
     end
   end
-    redirect '/sessions/error'
+    redirect '/sessions/new'
 end
+
+# get '/sessions/error' do
+#   erb :'sessions/error'
+# end
 
 #log out
 # TODO make a form link thingy
@@ -49,7 +67,7 @@ end
 
 
 # Tracks (Music)
-get '/tracks/' do
+get '/tracks' do
   @tracks = Track.all
   erb :'tracks/index'
 end
@@ -65,15 +83,15 @@ get '/tracks/:id' do
 end
 
 post '/tracks' do 
-  # binding.pry
-  @tracks = Track.new(
-    title: params[:title],
-    artist: params[:artist],
-    url: params[:url]
-  )
-  if @tracks.save
-    redirect '/tracks/'
-  else
-    erb :'/tracks/new'
-  end
+    @tracks = Track.new(
+      title: params[:title],
+      artist: params[:artist],
+      url: params[:url]
+    )
+    if @tracks.save
+      redirect '/tracks/'
+    else
+      erb :'/tracks/new'
+    end
+
 end
