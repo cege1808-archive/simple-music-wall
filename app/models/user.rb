@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Validations
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /.*@.*/ }
-  validates :password, presence: true
+  validates :password_hash, presence: true
 
   def password
     @password ||= Password.new(password_hash)

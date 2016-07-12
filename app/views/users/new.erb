@@ -1,13 +1,13 @@
 <h1>Sign Up</h1>
 <hr/>
 
-<% if @new_user.errors.any? %>
+<% if @user.errors.any? %>
   <div>
-    <h1>Signing Up Error</h1>
+    <h3>Signing Up Error</h3>
     <strong>Some issues with you new_user, please fix them: </strong>
     <ul>
-      <% @new_user.errors.full_messages.each do |new_user_error| %>
-        <li> <%= new_user_error %></li>
+      <% @user.errors.full_messages.each do |user_error| %>
+        <li> <%= user_error %></li>
       <% end %>
     </ul>
   </div>
@@ -16,17 +16,17 @@
 <form method="POST" action="/users">
   <div> 
     <label>Username:</label>
-    <input type="text" name="username" value="<%= @new_user.username %>">
+    <input type="text" name="username" value="<%= @user.username %>">
   </div>
 
   <div> 
     <label>Email:</label>
-    <input type="text" name="email" value="<%= @new_user.email %>">
+    <input type="text" name="email" value="<%= @user.email %>">
   </div>
 
   <div> 
     <label>Password:</label>
-    <input type="text" name="password" value="<%= @new_user.password %>">
+    <input type="text" name="password">
   </div>
 
   <div> 

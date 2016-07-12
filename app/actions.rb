@@ -1,6 +1,13 @@
 # Homepage (Root path)
+before do
+  if cookies[:page_views]
+    cookies[:page_views] = cookies[:page_views].to_i + 1
+  else
+    cookies[:page_views] = 1
+  end
+end
 
-enable :sessions
+# enable :sessions
 
 get '/' do
   @current_user = session[:user]
@@ -17,26 +24,27 @@ helpers do
   end
 end
 
+# Sign Up
 get '/users/new' do
-  @new_user = User.new
+  @user = User.new
   erb :'/users/new'
 end
 
 post '/users' do
-  @new_user = User.new(
+  @user = User.new(
     username: params[:username],
-    email: params[:email],
-    password: params[:password]
-  )
+    email: params[:email])
+  @user.password = params[:password]
+
   if params[:password] == params[:confirm_password]
-    if @new_user.save
+    if @user.save
       redirect '/tracks'
     end
   end
   erb :'/users/new'
 end
 
-
+# Log In
 get '/sessions/new' do
   @user = User.new
   erb :'sessions/new'
@@ -44,7 +52,8 @@ end
 
 post '/sessions' do
   @user = User.find_by(username: params[:username])
-  if !@user.nil? and @user.password == params[:password] 
+  if @user and @user.password == params[:password] 
+    session[:user_id] = @user.id
     redirect '/tracks'
   else
     @error = "Username or password incorrect"
@@ -54,8 +63,9 @@ end
 
 #log out
 # TODO make a form link thingy
-delete '/sessions' do
-  session[:user] = nil
+get '/sessions' do
+  session.delete(:user_id)
+  #flash
   redirect '/'
 end
 
@@ -80,10 +90,11 @@ post '/tracks' do
     @tracks = Track.new(
       title: params[:title],
       artist: params[:artist],
-      url: params[:url]
+      url: params[:url],
+      user_id: session[:user_id]
     )
     if @tracks.save
-      redirect '/tracks/'
+      redirect '/tracks'
     else
       erb :'/tracks/new'
     end
