@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: { with: /.*@.*/ }
   validates :password, presence: true
 
-
   def password
     @password ||= Password.new(password_hash)
   end
@@ -19,4 +18,5 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
+
 end
