@@ -3,31 +3,35 @@
   /*background-color: black;*/
   background-size: cover;
   text-align: center;
-  padding: 25% 0 25% 0;
-
+  padding: 30% 0 40% 0;
 }
 
 .jumbotron h1 {
   color: white;
   padding: 10px;
-/*  max-width:900px;*/
   border: 10px solid white;
   background-color: rgba(0,0,0,0.5);
- /* margin-left: 19% */
-
+  font-size: 50px;
 }
 
 .jumbotron span img {
-  padding-top: 50px;
-  height:200px;
+  margin-top: 50px;
+  height:150px;
+/*  transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;*/
 }
 
 
 .jumbotron span img:hover {
-  -webkit-transform: rotate(60deg) 1s;
-  transform: rotate(60deg) 1s;
+  transform: rotate(135deg) ;
+  -webkit-filter: invert(100%);
+  transition: all 0.8s ease;
+  position: relative;
 }
 
-
-
-
+.track_card {
+  border: 2px solid black;
+  height: 250px;
+  width: 250px;
+  margin: 40px;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.19), 6px 0 6px rgba(0, 0, 0, 0.23);
+}

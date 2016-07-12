@@ -3,6 +3,7 @@
 
 <% if @new_user.errors.any? %>
   <div>
+    <h1>Signing Up Error</h1>
     <strong>Some issues with you new_user, please fix them: </strong>
     <ul>
       <% @new_user.errors.full_messages.each do |new_user_error| %>

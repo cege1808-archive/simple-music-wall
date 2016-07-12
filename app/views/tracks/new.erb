@@ -5,8 +5,8 @@
   <div>
     <strong>Some issues with you tracks, please fix them: </strong>
     <ul>
-      <% @tracks.errors.full_tracks.each do |tracks| %>
-        <li> <%= tracks %></li>
+      <% @tracks.errors.full_messages.each do |tracks_error | %>
+        <li> <%= tracks_error %></li>
       <% end %>
     </ul>
   </div>

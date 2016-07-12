@@ -1,16 +1,17 @@
 <h1> All Tracks </h1>
 
 <hr/>
-
-<% @tracks.each do |track| %>
-  <div class="track">
-    <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.artist %>)</small></h3>
-    <p>
-      <%= track.url %>
-    </p>
-    <p>Contributor: <%= track.user_id %></p>
-  </div>
-<% end %>
+<div class="container-fluid">
+  <% @tracks.each do |track| %>
+    <div class="track_card col-xs-2" >
+      <h3><a href="/tracks/<%= track.id %>"><%= track.title %></a> <small>(by: <%= track.artist %>)</small></h3>
+      <p>
+        <%= track.url %>
+      </p>
+      <p>Contributor: <%= track.user_id %></p>
+    </div>
+  <% end %>
+</div>
 
 <hr/>
 

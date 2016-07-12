@@ -3,19 +3,19 @@
 enable :sessions
 
 get '/' do
-  @current_user = "claire" #session[:user]
+  @current_user = session[:user]
   erb :index
 end
 
-# helpers do 
-#   def current_user
-#     @current_user ||= User.find(username: session[:user]) if session[:user]
-#   end
+helpers do 
+  def current_user
+    @current_user ||= User.find(username: session[:user]) if session[:user]
+  end
 
-#   def logged_in?
-#     !@current_user.nil?
-#   end
-# end
+  def logged_in?
+    !@current_user.nil?
+  end
+end
 
 get '/users/new' do
   @new_user = User.new
@@ -51,10 +51,6 @@ post '/sessions' do
     erb :'/sessions/new'
   end
 end
-
-# get '/sessions/error' do
-#   erb :'sessions/error'
-# end
 
 #log out
 # TODO make a form link thingy
