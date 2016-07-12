@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  # include BCrypt
+  include BCrypt
   
   # Associations
   has_many :tracks
@@ -8,11 +8,15 @@ class User < ActiveRecord::Base
   # Validations
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /.*@.*/ }
-  validates :password, presence: true, length: { minimum: 5 }
+  validates :password, presence: true
 
 
   def password
-
+    @password ||= Password.new(password_hash)
   end
 
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
 end
