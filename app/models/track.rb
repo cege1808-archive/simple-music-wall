@@ -2,6 +2,7 @@ class Track < ActiveRecord::Base
 
   # Associations
   belongs_to :user
+  has_many :votes
 
   # Validations
   validates :title, presence: true

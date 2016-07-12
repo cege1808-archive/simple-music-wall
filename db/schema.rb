@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712184340) do
+ActiveRecord::Schema.define(version: 20160712195018) do
 
   create_table "tracks", force: :cascade do |t|
     t.string   "title"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 20160712184340) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "password_hash"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "track_id"
   end
 
 end

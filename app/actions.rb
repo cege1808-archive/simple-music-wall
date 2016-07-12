@@ -61,6 +61,7 @@ post '/sessions' do
   end
 end
 
+
 #log out
 # TODO make a form link thingy
 get '/sessions' do
@@ -81,9 +82,27 @@ get '/tracks/new' do
   erb :'tracks/new'
 end
 
-get '/tracks/:id' do
-  @tracks = Track.find params[:id]
+get '/tracks/:track_id' do
+  @tracks = Track.find params[:track_id]
   erb :'tracks/show'
+end
+
+post '/upvote/:track_id' do
+  searched_vote = Vote.where(track_id: params[:track_id]).where(user_id: session[:user_id])
+
+  if searched_vote.length > 0
+    #down vote
+    Vote.destroy(searched_vote)
+  else
+    # up vote
+    @vote = Vote.new(
+      track_id: params[:track_id],
+      user_id: session[:user_id]
+      )
+    @vote.save
+  end
+  
+ redirect '/tracks'
 end
 
 post '/tracks' do 

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   
   # Associations
   has_many :tracks
+  has_many :votes
 
   # Validations
   validates :username, presence: true, uniqueness: true
