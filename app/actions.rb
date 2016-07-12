@@ -3,36 +3,41 @@
 enable :sessions
 
 get '/' do
-  @current_user = session["value"]
-  # session["value"] ||= "Hello world!"
-  "The cookie you've created contains the value: #{session["value"]}"
+  @current_user = "claire" #session[:user]
   erb :index
 end
 
-helpers do 
-  def current_user
-    #session['whatever'] will be nil if it's not present in the session
-    user_id = session['user_id']
-    @current_user ||= User.find(username: session[:user]) if session[:user]
-  end
+# helpers do 
+#   def current_user
+#     @current_user ||= User.find(username: session[:user]) if session[:user]
+#   end
 
-  def logged_in?
-    !current_user.nil?
-  end
+#   def logged_in?
+#     !@current_user.nil?
+#   end
+# end
+
+get '/user/new' do
+  @current_user = User.new
+  erb :'user/new'
 end
 
+
+
 get '/sessions/new' do
-  @users = User.new
+  @current_user = User.new
   erb :'sessions/new'
 end 
 
-
 post '/sessions' do
-  if (params[:username] == "a username") && (params[:password] == "a username")
-    #login
-    session[:user] = "user id or username"
+  @user1 = User.find_by(username: params[:username])
+  if !@user1.nil?
+    if @user1.password == params[:password] 
+      @current_user = @user1
+      redirect '/tracks'
+    end
   end
-  
+    redirect '/sessions/error'
 end
 
 #log out
@@ -42,6 +47,8 @@ delete '/sessions' do
   redirect '/'
 end
 
+
+# Tracks (Music)
 get '/tracks/' do
   @tracks = Track.all
   erb :'tracks/index'
