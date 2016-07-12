@@ -32,26 +32,24 @@ post '/users' do
     if @new_user.save
       redirect '/tracks'
     end
-  else
-    erb :'/users/new'
   end
+  erb :'/users/new'
 end
 
 
 get '/sessions/new' do
-  @current_user = User.new
+  @user = User.new
   erb :'sessions/new'
 end 
 
 post '/sessions' do
-  @user1 = User.find_by(username: params[:username])
-  if !@user1.nil?
-    if @user1.password == params[:password] 
-      @current_user = @user1
-      redirect '/tracks'
-    end
+  @user = User.find_by(username: params[:username])
+  if !@user.nil? and @user.password == params[:password] 
+    redirect '/tracks'
+  else
+    @error = "Username or password incorrect"
+    erb :'/sessions/new'
   end
-    redirect '/sessions/new'
 end
 
 # get '/sessions/error' do

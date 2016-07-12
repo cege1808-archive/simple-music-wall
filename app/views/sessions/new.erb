@@ -1,26 +1,19 @@
 <h1>Login</h1>
 <hr/>
 
-<% if @current_user.errors.any? %>
-  <div>
-    <strong>Some issues with you current_user, please fix them: </strong>
-    <ul>
-      <% @current_user.errors.full_tracks.each do |current_user_error| %>
-        <li> <%= current_user_error %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<h1>Log In Error</h1>
+
+<%= @error %>
 
 <form method="POST" action="/sessions">
   <div> 
     <label>Username:</label>
-    <input type="text" name="username" value="<%= @current_user.username %>">
+    <input type="text" name="username">
   </div>
 
   <div> 
     <label>Password:</label>
-    <input type="text" name="password" value="<%= @current_user.password %>">
+    <input type="text" name="password">
   </div>
 
   <div>

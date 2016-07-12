@@ -5,7 +5,7 @@
   <div>
     <strong>Some issues with you new_user, please fix them: </strong>
     <ul>
-      <% @new_user.errors.full_new_tracks.each do |new_user_error| %>
+      <% @new_user.errors.full_messages.each do |new_user_error| %>
         <li> <%= new_user_error %></li>
       <% end %>
     </ul>
