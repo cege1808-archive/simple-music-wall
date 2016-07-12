@@ -1,6 +1,6 @@
-.jumbotron{
+/*Index*/
+.jumbotron {
   background: url(img/mainbackground.jpeg) no-repeat;
-  /*background-color: black;*/
   background-size: cover;
   text-align: center;
   padding: 30% 0 40% 0;
@@ -17,9 +17,7 @@
 .jumbotron span img {
   margin-top: 50px;
   height:150px;
-/*  transition: color 0.2s ease, background-color 0.2s ease, transform 0.3s ease;*/
 }
-
 
 .jumbotron span img:hover {
   transform: rotate(135deg) ;
@@ -28,15 +26,57 @@
   position: relative;
 }
 
+/*Tracks*/
 .track_card {
-  border: 2px solid black;
-  height: 250px;
+  height: 300px;
   width: 250px;
   margin: 40px;
-  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.19), 6px 0 6px rgba(0, 0, 0, 0.23);
+  padding: 0;
+  text-align: center;
+
 }
 
 .track_img {
-  height: 150px;
-  width: 150px;
+  position:relative;
 }
+
+.track_img img{
+  border: 2px solid black;
+  width: 100%;
+  margin: 0;
+}
+
+.track_img button{
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  color:black;
+  font-size: 40px;
+}
+
+.track_tag {
+  margin: 1px;
+  padding: 0px;
+}
+
+.track_detail {
+  display: none;
+  position:absolute;
+  top: 33%;
+  left: 25%;
+}
+
+.track_img:hover > img {
+  opacity: 0.05;
+}
+
+.track_img:hover > .track_detail{
+  display: block;
+  z-index: 10;
+}
+
+
+
+
+

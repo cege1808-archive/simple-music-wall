@@ -74,6 +74,7 @@ end
 # Tracks (Music)
 get '/tracks' do
   @tracks = Track.all
+  
   erb :'tracks/index'
 end
 
@@ -88,21 +89,18 @@ get '/tracks/:track_id' do
 end
 
 post '/upvote/:track_id' do
-  searched_vote = Vote.where(track_id: params[:track_id]).where(user_id: session[:user_id])
+  @vote = Vote.new(
+    track_id: params[:track_id],
+    user_id: session[:user_id]
+    )
+  @vote.save
+  redirect '/tracks'
+end
 
-  if searched_vote.length > 0
-    #down vote
-    Vote.destroy(searched_vote)
-  else
-    # up vote
-    @vote = Vote.new(
-      track_id: params[:track_id],
-      user_id: session[:user_id]
-      )
-    @vote.save
-  end
-  
- redirect '/tracks'
+post '/downvote/:track_id' do
+  @searched_vote = Vote.where(track_id: params[:track_id]).where(user_id: session[:user_id])
+  Vote.destroy(@searched_vote)
+  redirect '/tracks'
 end
 
 post '/tracks' do 
