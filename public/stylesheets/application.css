@@ -1,3 +1,18 @@
+/*Menu*/
+.navbar {
+  background-color: rgba(255,255,255,0.3);
+  letter-spacing: 4px;
+  padding-top: 5px;
+}
+
+.navbar:hover{
+  background-color: rgba(255,255,255,0.5);
+}
+
+.navbar li a, .navbar .navbar-brand {
+  color: black !important;
+}
+
 /*Index*/
 .jumbotron {
   background: url(img/mainbackground.jpeg) no-repeat;
@@ -17,7 +32,7 @@
 .jumbotron span img {
   margin-top: 50px;
   height:150px;
-  transform: rotate(-135deg) ;
+  transform: rotate(-90deg) ;
   transition: all 0.8s ease;
 }
 
