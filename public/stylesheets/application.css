@@ -17,6 +17,8 @@
 .jumbotron span img {
   margin-top: 50px;
   height:150px;
+  transform: rotate(-135deg) ;
+  transition: all 0.8s ease;
 }
 
 .jumbotron span img:hover {

@@ -7,12 +7,6 @@ before do
   end
 end
 
-
-get '/' do
-  @current_user = session[:user]
-  erb :index
-end
-
 helpers do 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) #if session[:user_id]
@@ -23,6 +17,11 @@ helpers do
   end
 end
 
+# Index
+get '/' do
+  @current_user = session[:user_id]
+  erb :index
+end
 
 # Sign Up
 get '/users/new' do

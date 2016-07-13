@@ -5,15 +5,17 @@
 
     <span class="col-md-2 col-md-offset-5">
       
-      <% if logged_in? %>
-          <a href="/tracks">
-            <img src="stylesheets/img/gototracksicon.png" alt="icon">
-          </a>
-      <% else %>
-          <a href="/sessions/login">
-            <img src="stylesheets/img/gototracksicon.png" alt="icon">
-          </a>
-      <% end %>
+      <% 
+      if logged_in?
+        go_to = "/tracks"
+      else
+        go_to = "/sessions/login"
+      end 
+      %>
+
+      <a href="<%= go_to %>">
+          <img src="stylesheets/img/gototracksicon.png" alt="icon">
+      </a>
     </span>
     <!-- design by Alfredo Hernandez from the Noun Project -->
     <!--  -->
