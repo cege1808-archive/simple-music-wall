@@ -7,7 +7,6 @@ before do
   end
 end
 
-# enable :sessions
 
 get '/' do
   @current_user = session[:user]
@@ -16,13 +15,14 @@ end
 
 helpers do 
   def current_user
-    @current_user ||= User.find(username: session[:user]) if session[:user]
+    @current_user ||= User.find_by(id: session[:user_id]) #if session[:user_id]
   end
 
   def logged_in?
-    !@current_user.nil?
+    !(@current_user.nil?)
   end
 end
+
 
 # Sign Up
 get '/users/new' do
@@ -45,7 +45,7 @@ post '/users' do
 end
 
 # Log In
-get '/sessions/new' do
+get '/sessions/login' do
   @user = User.new
   erb :'sessions/new'
 end 
@@ -64,7 +64,7 @@ end
 
 #log out
 # TODO make a form link thingy
-get '/sessions' do
+get '/sessions/logout' do
   session.delete(:user_id)
   #flash
   redirect '/'
@@ -74,7 +74,6 @@ end
 # Tracks (Music)
 get '/tracks' do
   @tracks = Track.all
-  
   erb :'tracks/index'
 end
 

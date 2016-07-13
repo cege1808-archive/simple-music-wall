@@ -4,8 +4,16 @@
     <h1 class="col-sm-8 col-sm-offset-2">Welcome to Music Wall</h1>
 
     <span class="col-md-2 col-md-offset-5">
-      <a href session><img src="stylesheets/img/gototracksicon.png" alt="icon">
-      </img>
+      
+      <% if logged_in? %>
+          <a href="/tracks">
+            <img src="stylesheets/img/gototracksicon.png" alt="icon">
+          </a>
+      <% else %>
+          <a href="/sessions/login">
+            <img src="stylesheets/img/gototracksicon.png" alt="icon">
+          </a>
+      <% end %>
     </span>
     <!-- design by Alfredo Hernandez from the Noun Project -->
     <!--  -->
