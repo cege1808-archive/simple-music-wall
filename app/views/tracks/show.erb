@@ -7,8 +7,17 @@
 </p>
 
 <img src="<%= @tracks.url %>">
+<form>
 <input type="submit" value="Upvote <%= @tracks.votes.count %>">
+</form>
 
+<h4>Reviews</h4>
+  <% @reviews.each do |review| %>
+    <p><%= review.user.username %></p>
+    <p><%= review.updated_at %></p>
+    <p><%= review.comment %></p>
+
+  <% end %>
 
 <hr/>
 <a href="/tracks">Back to All Tracks</a>

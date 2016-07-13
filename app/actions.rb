@@ -84,6 +84,8 @@ end
 
 get '/tracks/:track_id' do
   @tracks = Track.find params[:track_id]
+  @reviews = Review.find_by(track_id: params[:track_id]) 
+  @reviews = [] if @reviews.nil?
   erb :'tracks/show'
 end
 

@@ -9,38 +9,34 @@
       <div class="track_detail">
 
         <h5>Contributor: <%= track.user.username %></h5>
+        <%
+        action = 'upvote'
+        icon = 'heart-empty'
+        if track.voted?(session[:user_id])
+          action = 'downvote'
+          icon = 'heart'
+        end 
+        %>
 
-        <% @searched_vote = Vote.where(track_id: track.id).where(user_id: session[:user_id]) %>
-        <% if @searched_vote.length > 0 %> 
-          <form method="POST" action="downvote/<%= track.id %>" >
-            <button type="submit">
-                <span class="glyphicon glyphicon-heart"></span>
+        <form method="POST" action="<%= action%>/<%= track.id%>">
+          <button type="submit">
+                <span class="glyphicon glyphicon-<%= icon %>"></span>
                 <%=track.votes.count  %>
             </button>
-          </form>
-        <% else %>
-          <form method="POST" action="upvote/<%= track.id %>" >
-            <button type="submit">
-                <span class="glyphicon glyphicon-heart-empty"></span>
-                <%=track.votes.count  %>
-            </button>
-          </form>
-        <% end %>
+        </form>
 
       </div>
 
       <img src="<%= track.url %>">
       
     </div>
-      
 
       <div class="track_tag">
         <h4><a href="/tracks/<%= track.id %>"><%= track.title %></a> - <small><%= track.artist %></small></h4>
       </div>
 
-      
-
     </div>
+
   <% end %>
 </div>
 
