@@ -12,6 +12,8 @@
 </form>
 
 <h4>Reviews</h4>
+  <textarea class="form-control" rows="3"></textarea>
+  <button class="btn btn-default" type="submit">Post</button>
   <% @reviews.each do |review| %>
     <p><%= review.user.username %></p>
     <p><%= review.updated_at %></p>
