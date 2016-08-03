@@ -1,7 +1,7 @@
-Sinatra
+Ombak
 =============
 
-Brought to you by Lighthouse Labs
+A music collection where users can submit new songs, vote up/down, and comment. 
 
 ## Getting Started
 
